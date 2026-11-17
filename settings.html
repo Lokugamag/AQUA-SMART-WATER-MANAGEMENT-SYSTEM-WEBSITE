@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>System Settings | AQUA Smart</title>
+    <link rel="icon" href="images/ABC Logo.png">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script>
+    if (
+        sessionStorage.getItem("aquaUserRole") !== "admin" ||
+        sessionStorage.getItem("aquaAdminVerified") !== "true"
+    ) {
+        window.location.replace("admin-login.html");
+    }
+</script>
+</head>
+
+<body>
+
+    <header class="settings-header">
+        <div>
+            <h2>AQUA SMART</h2>
+            <p>Water Management System</p>
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </header>
+
+    <main class="settings-container">
+
+        <div class="settings-title">
+            <div>
+                <span class="eyebrow">ADMINISTRATOR PANEL</span>
+                <h1>System Settings</h1>
+                <p>Configure your water monitoring system.</p>
+            </div>
+        </div>
+
+        <section class="settings-card">
+
+            <h2>System Configuration</h2>
+
+            <p class="description">
+                Changes are used by the water monitoring system.
+            </p>
+
+            <form id="settingsForm">
+
+                <div class="settings-grid">
+
+                    <div class="setting-field">
+                        <label for="loginUsername">
+                            User Login Username
+                        </label>
+                        <input type="text" id="loginUsername"
+                               value="operator" required>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="loginPassword">
+                            User Login Password
+                        </label>
+                        <input type="password" id="loginPassword"
+                               placeholder="Leave blank to keep current">
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="adminUsername">
+                            Settings Username
+                        </label>
+                        <input type="text" id="adminUsername"
+                               value="admin" required>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="adminPassword">
+                            Settings Password
+                        </label>
+                        <input type="password" id="adminPassword"
+                               placeholder="Leave blank to keep current">
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="tankVolume">Tank Volume (L)</label>
+                        <input type="number" id="tankVolume"
+                               value="200" min="1" required>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="tankHeight">Tank Height (CM)</label>
+                        <input type="number" id="tankHeight"
+                               value="90" min="1" required>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="sensorOffset">Sensor Offset (CM)</label>
+                        <input type="number" id="sensorOffset"
+                               value="10" min="0" required>
+                        <small>Sensor face to full water line.</small>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="pumpOn">Pump ON Level (%)</label>
+                        <input type="number" id="pumpOn"
+                               value="30" min="0" max="100" required>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="pumpOff">Pump OFF Level (%)</label>
+                        <input type="number" id="pumpOff"
+                               value="80" min="0" max="100" required>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="pumpTolerance">
+                            Pump Tolerance (%)
+                        </label>
+                        <input type="number" id="pumpTolerance"
+                               value="3" min="0" max="20" required>
+                    </div>
+
+                </div>
+
+                <div id="effectiveSettings" class="effective-settings">
+                    Effective: ON ≤ 30% · OFF ≥ 80% (tol 3)
+                </div>
+
+                <p id="settingsMessage" role="status"></p>
+
+                <div class="settings-actions">
+
+                    <button type="submit" class="save-settings-btn">
+                        SAVE SETTINGS
+                    </button>
+
+                    <a href="dashboard.html" class="close-settings-btn">
+                        CLOSE
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="js/settings.js"></script>
+
+</body>
+</html>

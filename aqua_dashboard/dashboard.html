@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AQUA Smart Water Management</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/dashboard.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="abc-logo">ABC</div>
+      <div class="brand-divider"></div>
+      <div class="aqua-brand"><span class="drop">◆</span><div><strong>AQUA</strong><small>Smart Water Management</small></div></div>
+    </div>
+    <button class="logout-btn" id="logoutBtn">↪ Logout</button>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <nav>
+        <a class="nav-link active" href="#home">⌂ <span>Home</span></a>
+        <button class="nav-link" id="openReport">▤ <span>PDF Reports</span></button>
+        <a class="nav-link" href="#settings">⚙ <span>Settings</span></a>
+        <a class="nav-link" href="#account">♙ <span>Account</span></a>
+        <a class="nav-link" href="#chatbot">☏ <span>AI Chatbot</span></a>
+        <a class="nav-link" href="#emergency">✚ <span>Emergency</span></a>
+        <a class="nav-link" href="#contact">✉ <span>Contact Us</span></a>
+      </nav>
+      <div class="sidebar-brand"><span class="brand-drop">💧</span><b>AQUA</b><small>Smart Water Management</small></div>
+    </aside>
+
+    <main class="main-content" id="home">
+      <div class="page-heading">
+        <div><p class="eyebrow">WATER MANAGEMENT</p><h1>Water Tank Dashboard</h1><p class="subheading">Live monitoring and pump control</p></div>
+        <div class="sensor-status"><span class="status-dot"></span><span id="sensorStatus">Sensor connected</span></div>
+      </div>
+
+      <section class="dashboard-grid">
+        <article class="panel tank-panel">
+          <div class="panel-heading"><div><span class="heading-icon">▤</span><h2>Water Tank Overview</h2></div><span class="updated" id="lastUpdated">Updated just now</span></div>
+          <div class="tank-area">
+            <div class="tank-labels"><span>Level 5</span><span>Level 4</span><span>Level 3</span><span>Level 2</span><span>Level 1</span></div>
+            <div class="tank-visual" aria-label="Five-level water tank">
+              <div class="tank-cap"></div>
+              <div class="tank-body">
+                <div class="tank-water" id="tankWater">
+                  <div class="tank-segment level-5"></div><div class="tank-segment level-4"></div>
+                  <div class="tank-segment level-3"></div><div class="tank-segment level-2"></div>
+                  <div class="tank-segment level-1"></div>
+                </div>
+              </div>
+              <div class="tank-base"></div>
+            </div>
+          </div>
+          <div class="level-summary">
+            <div><span class="summary-label">WATER LEVEL</span><strong id="levelPercent">68%</strong></div>
+            <div class="summary-divider"></div>
+            <div><span class="summary-label">WATER VOLUME</span><strong><span id="levelLitres">1,360</span> <small>L</small></strong></div>
+          </div>
+          <div class="level-track"><span id="levelBar"></span></div>
+        </article>
+
+        <div class="right-column">
+          <article class="panel controls-panel">
+            <div class="panel-heading"><div><span class="heading-icon">⚙</span><h2>Operating Mode</h2></div></div>
+            <div class="mode-row">
+              <div><strong id="modeTitle">AUTO MODE</strong><p id="modeDescription">Pump is controlled automatically by sensor readings.</p></div>
+              <button class="mode-switch auto" id="modeSwitch" role="switch" aria-checked="true"><span class="switch-knob"></span><span id="modeSwitchText">AUTO</span></button>
+            </div>
+            <div class="pump-row">
+              <div><strong>Pump State</strong><span class="pump-state" id="pumpState">ON</span></div>
+              <button class="pump-switch" id="pumpSwitch" disabled><span class="switch-knob"></span><span id="pumpSwitchText">ON</span></button>
+            </div>
+            <p class="control-note" id="controlNote">AUTO: Pump ON at 30% or below · Pump OFF at 80% or above.</p>
+          </article>
+
+          <article class="panel chart-panel">
+            <div class="panel-heading"><div><span class="heading-icon">⌁</span><h2>Water Level History</h2></div></div>
+            <canvas id="waterChart" height="150"></canvas>
+          </article>
+
+          <article class="panel info-panel">
+            <div><span class="info-mark">●</span><span>Tank capacity</span><strong>2,000 L</strong></div>
+            <div><span class="info-mark">◷</span><span>Last sensor update</span><strong id="sensorTime">--:--:--</strong></div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer-logos"><span>ABC Trade &amp; Investments</span><span class="footer-aqua">💧 AQUA Smart Water Management</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <section class="report-modal" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+      <button class="modal-close" id="closeReport" aria-label="Close">×</button>
+      <p class="eyebrow">AQUA REPORT CENTRE</p><h2 id="reportTitle">Generate PDF Report</h2>
+      <p class="subheading">Choose a period to include in your water monitoring report.</p>
+      <div class="date-fields">
+        <label>Start date<input type="date" id="startDate"></label>
+        <label>End date<input type="date" id="endDate"></label>
+      </div>
+      <div class="report-preview"><span>Report includes</span><p>Water-level history · Average / minimum / maximum · Pump ON/OFF summary · Pie chart</p></div>
+      <p class="report-error" id="reportError" aria-live="polite"></p>
+      <button class="primary-btn" id="generatePdf">Generate PDF Report</button>
+    </section>
+  </div>
+
+  <canvas id="pumpPieChart" width="500" height="300" hidden></canvas>
+</body>
+</html>

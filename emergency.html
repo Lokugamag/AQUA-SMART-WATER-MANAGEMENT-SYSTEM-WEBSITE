@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Management | AQUA</title>
+    <link rel="icon" href="images/ABC Logo.png">
+
+    <link rel="stylesheet" href="css/emergency.css">
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="emergency-header">
+
+        <div class="brand">
+            <img src="images/ABC Logo.png"
+                 alt="ABC Company Logo"
+                 class="abc-logo">
+
+            <div class="logo-divider"></div>
+
+            <img src="images/Aqua Logo.png"
+                 alt="AQUA Company Logo"
+                 class="aqua-logo">
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="emergency-container">
+
+        <!-- PAGE TITLE -->
+        <section class="page-heading">
+            <div>
+                <h1>Emergency Management</h1>
+                <p>Monitor and manage AQUA water system emergencies.</p>
+            </div>
+
+            <div class="system-status" id="systemStatus">
+                <span class="status-dot"></span>
+                <span id="systemStatusText">System Status: Normal</span>
+            </div>
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <div class="summary-icon active-icon">!</div>
+                <div>
+                    <p>Active Alerts</p>
+                    <h2 id="activeCount">0</h2>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon critical-icon">⚠</div>
+                <div>
+                    <p>Critical Alerts</p>
+                    <h2 id="criticalCount">0</h2>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon resolved-icon">✓</div>
+                <div>
+                    <p>Resolved Alerts</p>
+                    <h2 id="resolvedCount">0</h2>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon total-icon">▤</div>
+                <div>
+                    <p>Total Reports</p>
+                    <h2 id="totalCount">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- EMERGENCY REPORT FORM -->
+        <section class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Report an Emergency</h2>
+                    <p>Submit a report about a water system problem.</p>
+                </div>
+
+                <span class="section-label">Emergency Report</span>
+            </div>
+
+            <form id="emergencyForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="emergencyType">
+                            Emergency Type *
+                        </label>
+
+                        <select id="emergencyType" required>
+                            <option value="">Select emergency type</option>
+                            <option value="Low Water Level">Low Water Level</option>
+                            <option value="Tank Overflow">Tank Overflow</option>
+                            <option value="Pump Not Working">Pump Not Working</option>
+                            <option value="Pump Running Continuously">Pump Running Continuously</option>
+                            <option value="Water Leakage">Water Leakage</option>
+                            <option value="Sensor Failure">Sensor Failure</option>
+                            <option value="Power Failure">Power Failure</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="priority">
+                            Priority Level *
+                        </label>
+
+                        <select id="priority" required>
+                            <option value="">Select priority</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Critical">Critical</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="location">
+                            Location *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Enter tank or system location"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="reporter">
+                            Reported By
+                        </label>
+
+                        <input
+                            type="text"
+                            id="reporter"
+                            placeholder="Enter your name"
+                        >
+                    </div>
+
+
+                    <div class="form-group full-width">
+                        <label for="description">
+                            Emergency Description *
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="4"
+                            placeholder="Describe the emergency and any relevant details..."
+                            required
+                        ></textarea>
+                    </div>
+
+
+                    <div class="form-group full-width">
+                        <label for="attachment">
+                            Attach an Image (Optional)
+                        </label>
+
+                        <input
+                            type="file"
+                            id="attachment"
+                            accept="image/*"
+                        >
+
+                        <small>Upload an image of the affected equipment if available.</small>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="reset" class="reset-btn">
+                        Clear Form
+                    </button>
+
+                    <button type="submit" class="submit-btn">
+                        Submit Emergency Report
+                    </button>
+                </div>
+
+                <p id="formMessage" class="form-message" aria-live="polite"></p>
+
+            </form>
+
+        </section>
+
+
+        <!-- EMERGENCY HISTORY -->
+        <section class="content-card history-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Emergency History</h2>
+                    <p>View and manage submitted emergency reports.</p>
+                </div>
+
+                <button type="button" id="clearHistoryBtn" class="clear-btn">
+                    Clear History
+                </button>
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Date & Time</th>
+                            <th>Emergency Type</th>
+                            <th>Location</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="emergencyTableBody">
+                        <!-- Emergency records appear here -->
+                    </tbody>
+                </table>
+
+                <div id="emptyMessage" class="empty-message">
+                    <span>✓</span>
+                    <h3>No Emergency Reports</h3>
+                    <p>There are currently no emergency reports to display.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EMERGENCY CONTACT -->
+        <section class="contact-card">
+
+            <div>
+                <h2>Need Immediate Assistance?</h2>
+                <p>Contact your system maintenance team for urgent technical support.</p>
+            </div>
+
+            <div class="contact-actions">
+                <a href="mailto:support@example.com" class="contact-btn">
+                    ✉ Contact Support
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="emergency-footer">
+            <p>© 2026 AQUA Smart Water Management System. All Rights Reserved.</p>
+        </footer>
+
+    </main>
+
+
+    <script src="js/emergency.js"></script>
+
+<!-- AQUA AI CHATBOT -->
+
+<div id="aqua-chatbot">
+
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle" class="chat-toggle"
+            aria-label="Open AQUA chatbot">
+        <span class="chat-icon">💬</span>
+        <span class="chat-notification"></span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+
+            <div class="bot-profile">
+                <div class="bot-avatar">💧</div>
+
+                <div class="bot-info">
+                    <h3>AQUA Assistant</h3>
+                    <span>
+                        <span class="online-dot"></span>
+                        Online | Here to help
+                    </span>
+                </div>
+            </div>
+
+            <button id="chat-close" class="chat-close"
+                    aria-label="Close chatbot">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="chat-messages">
+
+            <div class="bot-message">
+                <div class="message-avatar">💧</div>
+
+                <div class="message-content">
+                    <p>Hello! 👋 Welcome to AQUA Smart Water Management.</p>
+                    <p>I'm your AQUA Assistant. How can I help you today?</p>
+                </div>
+            </div>
+
+            <!-- Quick Questions -->
+            <div class="quick-questions" id="quick-questions">
+
+                <button class="quick-btn"
+                        data-question="What is AQUA?">
+                    What is AQUA?
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I check water levels?">
+                    Check water levels
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How does the water pump work?">
+                    Water pump information
+                </button>
+
+                <button class="quick-btn"
+                        data-question="What should I do in an emergency?">
+                    Emergency help
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I view reports?">
+                    View reports
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Type your message..."
+                autocomplete="off"
+                aria-label="Type your message"
+            >
+
+            <button id="chat-send" aria-label="Send message">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="chat-footer">
+            Powered by AQUA Smart Water Management
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chatbot CSS -->
+<link rel="stylesheet" href="css/chatbot.css">
+
+<!-- Chatbot JavaScript -->
+<script src="js/chatbot.js" defer></script>
+
+</body>
+</html>

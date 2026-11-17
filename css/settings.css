@@ -1,0 +1,192 @@
+
+/* AQUA SYSTEM SETTINGS PAGE */
+
+.settings-header {
+    background: #102A43;
+    color: white;
+    padding: 22px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-header h2 {
+    margin: 0;
+    font-size: 23px;
+    letter-spacing: 1px;
+}
+
+.settings-header p {
+    margin: 5px 0 0;
+    color: #b9d4e3;
+    font-size: 12px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: white;
+    border: 1px solid #5b8199;
+    padding: 10px 17px;
+    border-radius: 8px;
+}
+
+.back-btn:hover {
+    background: #1d5275;
+}
+
+.settings-container {
+    max-width: 1100px;
+    margin: 45px auto;
+    padding: 0 20px;
+}
+
+.settings-title {
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    color: #168cac;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.settings-title h1 {
+    color: #102A43;
+    margin: 8px 0;
+    font-size: 30px;
+}
+
+.settings-title p,
+.description {
+    color: #718795;
+    font-size: 14px;
+}
+
+.settings-card {
+    background: white;
+    padding: 30px;
+    border: 1px solid #dce7eb;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(28,65,82,.08);
+}
+
+.settings-card h2 {
+    color: #17384c;
+    margin-top: 0;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.setting-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.setting-field label {
+    color: #234e64;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.setting-field input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce7eb;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.setting-field input:focus {
+    border-color: #279bb8;
+    box-shadow: 0 0 0 3px rgba(39,155,184,.12);
+}
+
+.setting-field small {
+    color: #82939c;
+    font-size: 11px;
+}
+
+.effective-settings {
+    margin-top: 25px;
+    background: #eaf5f8;
+    padding: 15px;
+    border-radius: 9px;
+    color: #167f9d;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#settingsMessage {
+    min-height: 20px;
+    font-size: 13px;
+}
+
+.settings-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.save-settings-btn,
+.close-settings-btn {
+    border: 0;
+    border-radius: 8px;
+    padding: 13px 25px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.save-settings-btn {
+    background: #168cac;
+    color: white;
+}
+
+.save-settings-btn:hover {
+    background: #126e89;
+}
+
+.close-settings-btn {
+    background: #edf2f4;
+    color: #526b79;
+}
+
+@media(max-width:650px) {
+    .settings-header {
+        padding: 18px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .settings-container {
+        margin: 25px auto;
+    }
+
+    .settings-card {
+        padding: 20px;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-actions {
+        flex-direction: column;
+    }
+
+    .save-settings-btn,
+    .close-settings-btn {
+        text-align: center;
+        width: 100%;
+    }
+}

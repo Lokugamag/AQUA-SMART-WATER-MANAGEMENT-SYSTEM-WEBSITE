@@ -1,0 +1,35 @@
+/* FORCE LOGIN LOGO ALIGNMENT */
+
+body.login-page .login-card .brand {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0px !important;
+    width: 100% !important;
+    margin: 20px auto 0 !important;
+    padding: 0 !important;
+}
+
+/* ABC Mother Group Logo */
+body.login-page .login-card .brand img.abc-logo {
+    display: block !important;
+    width: 100px !important;
+    height: 70px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+}
+
+/* AQUA Logo - Exactly 70% */
+body.login-page .login-card .brand img.aqua-logo {
+    display: block !important;
+    width: 70px !important;
+    height: 49px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+}
+
+/* Remove divider spacing */
+body.login-page .login-card .brand-divider {
+    display: none !important;
+}

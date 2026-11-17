@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | AQUA Smart Water Management</title>
+    <link rel="icon" href="images/ABC Logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+<!-- Login Logo Fix -->
+<link rel="stylesheet" href="css/login-logo-fix.css">
+</head>
+
+<body class="login-page">
+    <div class="login-background"></div>
+
+    <header class="site-header">
+       <div class="login-top-bar">
+    <a href="index.html" class="back-home">
+        <span class="back-icon">←</span>
+        <span>Back to Home</span>
+    </a>
+</div>
+
+        </div>
+    </header>
+
+    <main class="login-section">
+
+        <div class="login-card">
+
+            <div class="login-heading">
+                
+                <p><b>Welcome Back!</b></p>
+                <h1>Sign in to your AQUA account</h1>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                 
+                </div>
+
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+
+                    <a href="#" class="forgot-password">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button type="submit" class="login-submit">
+                    Sign In
+                </button>
+
+                <p id="loginMessage" class="login-message"></p>
+            <div class="brand">
+    
+    <!-- ABC Company Logo -->
+    <img
+        src="images/ABC Logo.png"
+        alt="ABC Company Logo"
+        class="abc-logo"
+    >
+
+    <div class="brand-divider"></div>
+
+    <!-- AQUA Company Logo -->
+    <img
+        src="images/Aqua Logo.png"
+        alt="AQUA Company Logo"
+        class="aqua-logo"
+    >
+     </form>
+     </div>           
+            <div class="login-footer">
+                © 2026 AQUA Smart Water Management
+            </div>
+
+        </section>
+
+    </main>
+
+        </div>
+
+    </main>
+    <script src="js/login.js" defer></script>
+    
+<!-- AQUA AI CHATBOT -->
+
+<div id="aqua-chatbot">
+
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle" class="chat-toggle"
+            aria-label="Open AQUA chatbot">
+        <span class="chat-icon">💬</span>
+        <span class="chat-notification"></span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+
+            <div class="bot-profile">
+                <div class="bot-avatar">💧</div>
+
+                <div class="bot-info">
+                    <h3>AQUA Assistant</h3>
+                    <span>
+                        <span class="online-dot"></span>
+                        Online | Here to help
+                    </span>
+                </div>
+            </div>
+
+            <button id="chat-close" class="chat-close"
+                    aria-label="Close chatbot">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="chat-messages">
+
+            <div class="bot-message">
+                <div class="message-avatar">💧</div>
+
+                <div class="message-content">
+                    <p>Hello! 👋 Welcome to AQUA Smart Water Management.</p>
+                    <p>I'm your AQUA Assistant. How can I help you today?</p>
+                </div>
+            </div>
+
+            <!-- Quick Questions -->
+            <div class="quick-questions" id="quick-questions">
+
+                <button class="quick-btn"
+                        data-question="What is AQUA?">
+                    What is AQUA?
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I check water levels?">
+                    Check water levels
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How does the water pump work?">
+                    Water pump information
+                </button>
+
+                <button class="quick-btn"
+                        data-question="What should I do in an emergency?">
+                    Emergency help
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I view reports?">
+                    View reports
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Type your message..."
+                autocomplete="off"
+                aria-label="Type your message"
+            >
+
+            <button id="chat-send" aria-label="Send message">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="chat-footer">
+            Powered by AQUA Smart Water Management
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chatbot CSS -->
+<link rel="stylesheet" href="css/chatbot.css">
+
+<!-- Chatbot JavaScript -->
+<script src="js/chatbot.js" defer></script>
+
+</body>
+</html>

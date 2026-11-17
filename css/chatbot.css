@@ -1,0 +1,375 @@
+
+/* =====================================
+   AQUA CHATBOT - MAIN CONTAINER
+===================================== */
+
+#aqua-chatbot {
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 99999;
+}
+
+/* Floating Chat Button */
+
+.chat-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 65px;
+    height: 65px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #0077cc, #00b4d8);
+    color: white;
+
+    font-size: 28px;
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(0, 100, 180, 0.3);
+
+    transition: 0.3s;
+}
+
+.chat-toggle:hover {
+    transform: scale(1.1);
+}
+
+.chat-icon {
+    display: inline-block;
+}
+
+.chat-notification {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    width: 12px;
+    height: 12px;
+
+    background: #25d366;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+/* =====================================
+   CHAT WINDOW
+===================================== */
+
+.chat-window {
+    position: fixed;
+    bottom: 105px;
+    right: 25px;
+
+    width: 360px;
+    height: 510px;
+
+    background: #ffffff;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.18);
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+    z-index: 99999;
+}
+
+.chat-window.active {
+    display: flex;
+    animation: chatOpen 0.3s ease;
+}
+
+@keyframes chatOpen {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================
+   CHAT HEADER
+===================================== */
+
+.chat-header {
+    background: linear-gradient(135deg, #0066b3, #00a8cc);
+
+    color: white;
+
+    padding: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bot-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bot-avatar {
+    width: 45px;
+    height: 45px;
+
+    background: white;
+    color: #0077cc;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+}
+
+.bot-info h3 {
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+
+.bot-info span {
+    font-size: 11px;
+}
+
+.online-dot {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    background: #32e875;
+    border-radius: 50%;
+}
+
+.chat-close {
+    background: transparent;
+    border: none;
+
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+/* =====================================
+   CHAT MESSAGES
+===================================== */
+
+.chat-messages {
+    flex: 1;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    background: #f4f8fc;
+}
+
+.bot-message,
+.user-message {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.message-avatar {
+    width: 30px;
+    height: 30px;
+
+    min-width: 30px;
+
+    background: #dff2ff;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-content {
+    max-width: 85%;
+
+    background: white;
+
+    padding: 11px 14px;
+
+    border-radius: 5px 14px 14px 14px;
+
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+}
+
+.message-content p {
+    font-size: 13px;
+    line-height: 1.6;
+
+    margin: 0 0 7px;
+    color: #333;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* User Message */
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.user-message .message-content {
+    background: #0077cc;
+
+    border-radius: 14px 5px 14px 14px;
+}
+
+.user-message .message-content p {
+    color: white;
+}
+
+/* =====================================
+   QUICK QUESTION BUTTONS
+===================================== */
+
+.quick-questions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 10px 0 15px 38px;
+}
+
+.quick-btn {
+    background: white;
+
+    color: #0077cc;
+
+    border: 1px solid #b9dff5;
+
+    padding: 9px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+.quick-btn:hover {
+    background: #e4f4ff;
+    border-color: #0077cc;
+}
+
+/* =====================================
+   CHAT INPUT
+===================================== */
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+
+    padding: 12px;
+
+    border-top: 1px solid #e5eaf0;
+
+    background: white;
+
+    gap: 8px;
+}
+
+.chat-input-area input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #d5dce5;
+
+    border-radius: 25px;
+
+    outline: none;
+
+    font-size: 13px;
+}
+
+.chat-input-area input:focus {
+    border-color: #0077cc;
+}
+
+.chat-input-area button {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #0077cc;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.chat-input-area button:hover {
+    background: #005da3;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.chat-footer {
+    text-align: center;
+
+    padding: 8px;
+
+    background: white;
+
+    color: #999;
+
+    font-size: 10px;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 480px) {
+
+    .chat-window {
+        width: calc(100% - 24px);
+
+        height: min(510px, calc(100dvh - 110px));
+
+        right: 12px;
+        bottom: 90px;
+    }
+
+    .chat-toggle {
+        width: 58px;
+        height: 58px;
+
+        right: 15px;
+        bottom: 15px;
+    }
+
+}

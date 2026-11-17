@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | AQUA</title>
+    <link rel="icon" href="images/ABC Logo.png">
+    <link rel="stylesheet" href="css/account.css">
+</head>
+<body>
+
+    <header class="account-header">
+        <div class="brand">
+            <img src="images/ABC Logo.png" alt="ABC Logo" class="abc-logo">
+            <img src="images/Aqua Logo.png" alt="AQUA Logo" class="aqua-logo">
+        </div>
+
+        <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+    </header>
+
+    <main class="account-container">
+
+        <div class="page-heading">
+            <h1>My Account</h1>
+            <p>Manage your personal information and account details.</p>
+        </div>
+
+        <section class="profile-card">
+
+            <div class="profile-top">
+                <div class="profile-avatar" id="profileAvatar">U</div>
+                <div>
+                    <h2 id="profileName">User Account</h2>
+                    <p id="profileEmail">user@example.com</p>
+                    <span class="account-badge">AQUA User</span>
+                </div>
+            </div>
+
+            <hr>
+
+            <h3>Personal Information</h3>
+
+            <form id="accountForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName"
+                               placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username"
+                               placeholder="Enter username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email"
+                               placeholder="Enter email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone"
+                               placeholder="Enter phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountType">Account Type</label>
+                        <input type="text" id="accountType"
+                               value="Standard User" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="joinedDate">Account Status</label>
+                        <input type="text" id="joinedDate"
+                               value="Active" readonly>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="save-btn">
+                    Save Changes
+                </button>
+
+                <p id="saveMessage" class="save-message"></p>
+
+            </form>
+
+        </section>
+
+        <section class="security-card">
+            <h3>Account Security</h3>
+            <p>Keep your account information safe and secure.</p>
+
+            <div class="security-row">
+                <div>
+                    <strong>Password</strong>
+                    <p>Change your account password.</p>
+                </div>
+                <button type="button" class="password-btn"
+                        id="passwordBtn">
+                    Change Password
+                </button>
+            </div>
+        </section>
+
+    </main>    
+    <script src="js/account.js"></script>
+    
+<!-- AQUA AI CHATBOT -->
+
+<div id="aqua-chatbot">
+
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle" class="chat-toggle"
+            aria-label="Open AQUA chatbot">
+        <span class="chat-icon">💬</span>
+        <span class="chat-notification"></span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+
+            <div class="bot-profile">
+                <div class="bot-avatar">💧</div>
+
+                <div class="bot-info">
+                    <h3>AQUA Assistant</h3>
+                    <span>
+                        <span class="online-dot"></span>
+                        Online | Here to help
+                    </span>
+                </div>
+            </div>
+
+            <button id="chat-close" class="chat-close"
+                    aria-label="Close chatbot">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="chat-messages">
+
+            <div class="bot-message">
+                <div class="message-avatar">💧</div>
+
+                <div class="message-content">
+                    <p>Hello! 👋 Welcome to AQUA Smart Water Management.</p>
+                    <p>I'm your AQUA Assistant. How can I help you today?</p>
+                </div>
+            </div>
+
+            <!-- Quick Questions -->
+            <div class="quick-questions" id="quick-questions">
+
+                <button class="quick-btn"
+                        data-question="What is AQUA?">
+                    What is AQUA?
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I check water levels?">
+                    Check water levels
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How does the water pump work?">
+                    Water pump information
+                </button>
+
+                <button class="quick-btn"
+                        data-question="What should I do in an emergency?">
+                    Emergency help
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I view reports?">
+                    View reports
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Type your message..."
+                autocomplete="off"
+                aria-label="Type your message"
+            >
+
+            <button id="chat-send" aria-label="Send message">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="chat-footer">
+            Powered by AQUA Smart Water Management
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chatbot CSS -->
+<link rel="stylesheet" href="css/chatbot.css">
+
+<!-- Chatbot JavaScript -->
+<script src="js/chatbot.js" defer></script>
+
+</body>
+</html>

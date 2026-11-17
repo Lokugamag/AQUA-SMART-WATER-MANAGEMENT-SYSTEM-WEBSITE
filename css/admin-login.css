@@ -1,0 +1,137 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #edf3f5;
+    min-height: 100vh;
+}
+
+.admin-login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 40px 35px;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(20, 60, 80, .10);
+    text-align: center;
+}
+
+.admin-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.admin-login-card h1 {
+    color: #17384c;
+    font-size: 25px;
+    margin-bottom: 9px;
+}
+
+.subtitle {
+    color: #718795;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.admin-badge {
+    display: inline-block;
+    background: #eaf5f8;
+    color: #2187a3;
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+#adminLoginForm {
+    text-align: left;
+}
+
+#adminLoginForm label {
+    display: block;
+    color: #234e64;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 15px 0 8px;
+}
+
+#adminLoginForm input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce7eb;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+}
+
+#adminLoginForm input:focus {
+    border-color: #279bb8;
+}
+
+#adminLoginForm button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 9px;
+    background: #218eac;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#adminLoginForm button:hover {
+    background: #176f89;
+}
+
+#adminError {
+    color: #d14d4d;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 14px;
+    min-height: 16px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 22px;
+    color: #218eac;
+    text-decoration: none;
+    font-size: 13px;
+}
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 45px;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+    user-select: none;
+}

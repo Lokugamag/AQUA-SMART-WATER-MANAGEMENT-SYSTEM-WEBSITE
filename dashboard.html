@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AQUA Smart Water Management</title>
+  <link rel="icon" href="images/ABC Logo.png">
+ <link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/settings.css">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- jsPDF AutoTable -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+
+<!-- Dashboard JavaScript -->
+<script src="js/dashboard.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <!-- ABC Company Logo -->
+    <img
+        src="images/ABC Logo.png"
+        alt="ABC Company Logo"
+        class="abc-logo"
+    >
+
+    <div class="brand-divider"></div>
+
+    <!-- AQUA Company Logo -->
+    <img
+        src="images/Aqua Logo.png"
+        alt="AQUA Company Logo"
+        class="aqua-logo"
+    >
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <nav>
+        <a class="nav-link active" href="index.html">⌂ <span>Home</span></a>
+        <button class="nav-link" id="openReport">▤ <span>PDF Reports</span></button>
+        <a class="nav-link" href="account.html">♙ <span>Account</span></a>
+        <a class="nav-link" href="dashboard.html">▤ <span>Dashboard</span></a>
+        <a class="nav-link" href="chatbot.html">💬<span>AI Chatbot</span></a>
+        <a class="nav-link" href="emergency.html">✚ <span>Emergency</span></a>
+        <a class="nav-link" href="contact.html">✉ <span>Contact Us</span></a>
+        <a class="nav-link" href="admin-login.html">
+    ⚙ <span>Settings</span>
+</a>
+      </nav>
+      </aside>
+    
+
+    <!-- RIGHT MAIN CONTENT -->
+   <div class="content-area">
+    <main class="main-content" id="home">
+      <div class="page-heading">
+        <div><p class="eyebrow">WATER MANAGEMENT</p><h1>Water Tank Dashboard</h1><p class="subheading">Live monitoring and pump control</p></div>
+        <div class="sensor-status"><span class="status-dot"></span><span id="sensorStatus">ACTIVE</span></div>
+      </div>
+
+      <section class="dashboard-grid">
+        <article class="panel tank-panel">
+          <div class="panel-heading"><div><span class="heading-icon">▤</span><h2>Water Tank Overview</h2></div><span class="updated" id="lastUpdated">Updated just now</span></div>
+          <div class="tank-area">
+            <div class="tank-labels"><span>Level 5</span><span>Level 4</span><span>Level 3</span><span>Level 2</span><span>Level 1</span></div>
+            <div class="tank-visual" aria-label="Five-level water tank">
+              <div class="tank-cap"></div>
+              <div class="tank-body">
+                <div class="tank-water" id="tankWater">
+                  <div class="tank-segment level-5"></div><div class="tank-segment level-4"></div>
+                  <div class="tank-segment level-3"></div><div class="tank-segment level-2"></div>
+                  <div class="tank-segment level-1"></div>
+                </div>
+              </div>
+              <div class="tank-base"></div>
+            </div>
+          </div>
+          <div class="level-summary">
+            <div><span class="summary-label">WATER LEVEL</span><strong id="levelPercent">68%</strong></div>
+            <div class="summary-divider"></div>
+            <div><span class="summary-label">WATER VOLUME</span><strong><span id="levelLitres">1,360</span> <small>L</small></strong></div>
+          </div>
+          <div class="level-track"><span id="levelBar"></span></div>
+        </article>
+        <!-- RIGHT SIDE ANALYSIS -->
+        <div class="right-column">
+          <article class="panel controls-panel">
+            <div class="panel-heading"><div><span class="heading-icon">⚙</span><h2>Operating Mode</h2></div></div>
+            <div class="mode-row">
+              <div><strong id="modeTitle">AUTO MODE</strong><p id="modeDescription">Pump is controlled automatically by sensor readings.</p></div>
+              <button class="mode-switch auto" id="modeSwitch" role="switch" aria-checked="true"><span class="switch-knob"></span><span id="modeSwitchText">AUTO</span></button>
+            </div>
+           <div class="pump-row">
+
+    <div class="pump-info">
+
+        <strong>Pump State</strong>
+
+        <span class="pump-state is-on" id="pumpState">
+            PUMP ON
+        </span>
+
+    </div>
+
+    <button class="pump-switch" id="pumpSwitch" disabled>
+        <span class="switch-knob"></span>
+        <span id="pumpSwitchText">ON</span>
+    </button>
+
+</div>
+
+            <p class="control-note" id="controlNote">AUTO: Pump ON at 30% or below · Pump OFF at 80% or above.</p>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-heading"><div><span class="heading-icon">⌁</span><h2>Water Level History</h2></div></div>
+           <div class="chart-container">
+            <canvas id="waterChart" height="150"></canvas>
+            </div>
+          </article>
+          
+          <article class="panel info-panel">
+            <div><span class="info-mark">●</span><span>Tank capacity</span><strong>2,000 L</strong></div>
+            <div><span class="info-mark">◷</span><span>Last sensor update</span><strong id="sensorTime">--:--:--</strong></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  </div>
+  
+   <!-- END CONTENT AREA -->
+
+</div>
+<!-- END APP SHELL -->
+
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <section class="report-modal" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+      <button class="modal-close" id="closeReport" aria-label="Close">×</button>
+      <p class="eyebrow">AQUA REPORT CENTRE</p><h2 id="reportTitle">Generate PDF Report</h2>
+      <p class="subheading">Choose a period to include in your water monitoring report.</p>
+      <div class="date-fields">
+        <label>Start date<input type="date" id="startDate"></label>
+        <label>End date<input type="date" id="endDate"></label>
+      </div>
+      <div class="report-preview"><span>Report includes</span><p>Water-level history · Average / minimum / maximum · Pump ON/OFF summary · Pie chart</p></div>
+      <p class="report-error" id="reportError" aria-live="polite"></p>
+      <button class="primary-btn" id="generatePdf">Generate PDF Report</button>
+    </section>
+  </div>
+  <centre><canvas id="pumpPieChart" width="500" height="300" hidden></canvas></centre>
+  <button type="button" id="generateReport">
+    Generate Report
+</button>
+<!-- AQUA AI CHATBOT -->
+
+<div id="aqua-chatbot">
+
+  
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle" class="chat-toggle"
+            aria-label="Open AQUA chatbot">
+        <span class="chat-icon">💬</span>
+        <span class="chat-notification"></span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+
+            <div class="bot-profile">
+                <div class="bot-avatar">💧</div>
+
+                <div class="bot-info">
+                    <h3>AQUA Assistant</h3>
+                    <span>
+                        <span class="online-dot"></span>
+                        Online | Here to help
+                    </span>
+                </div>
+            </div>
+
+            <button id="chat-close" class="chat-close"
+                    aria-label="Close chatbot">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="chat-messages">
+
+            <div class="bot-message">
+                <div class="message-avatar">💧</div>
+
+                <div class="message-content">
+                    <p>Hello! 👋 Welcome to AQUA Smart Water Management.</p>
+                    <p>I'm your AQUA Assistant. How can I help you today?</p>
+                </div>
+            </div>
+
+            <!-- Quick Questions -->
+            <div class="quick-questions" id="quick-questions">
+
+                <button class="quick-btn"
+                        data-question="What is AQUA?">
+                    What is AQUA?
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I check water levels?">
+                    Check water levels
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How does the water pump work?">
+                    Water pump information
+                </button>
+
+                <button class="quick-btn"
+                        data-question="What should I do in an emergency?">
+                    Emergency help
+                </button>
+
+                <button class="quick-btn"
+                        data-question="How can I view reports?">
+                    View reports
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Type your message..."
+                autocomplete="off"
+                aria-label="Type your message"
+            >
+
+            <button id="chat-send" aria-label="Send message">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="chat-footer">
+            Powered by AQUA Smart Water Management
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chatbot CSS -->
+<link rel="stylesheet" href="css/chatbot.css">
+
+<!-- Chatbot JavaScript -->
+<script src="js/chatbot.js" defer></script>
+
+    </div>
+
+</div>
+</body>
+</html>
